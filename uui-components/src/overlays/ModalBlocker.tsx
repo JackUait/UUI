@@ -6,11 +6,11 @@ import { ModalBlockerProps, cx, uuiElement } from '@epam/uui';
 export class ModalBlocker extends React.Component<ModalBlockerProps, any> {
     constructor(props: ModalBlockerProps) {
         super(props);
-        window.addEventListener('keydown', this.keydownHandler);
     }
 
     componentDidMount() {
         document.body.style.overflow = 'hidden';
+        window.addEventListener('keydown', this.keydownHandler);
     }
 
     componentWillUnmount() {
@@ -35,7 +35,7 @@ export class ModalBlocker extends React.Component<ModalBlockerProps, any> {
             <div
                 className={ cx(css.container, this.props.cx) }
                 style={ { zIndex: this.props.zIndex } }
-                {...this.props.rawProps}
+                { ...this.props.rawProps }
             >
                 <div className={ uuiElement.modalBlocker } onClick={ this.handleBlockerClick }/>
                 <FocusLock autoFocus={ false } returnFocus>

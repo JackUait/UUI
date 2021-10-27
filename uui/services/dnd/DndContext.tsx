@@ -1,4 +1,4 @@
-import { mouseCoords, getOffset } from '../../helpers';
+import { mouseCoords, getOffset, isClientSide } from '../../helpers';
 import * as React from 'react';
 import { IDndContext, DndContextState } from '../../types';
 import { BaseContext } from '../BaseContext';
@@ -16,8 +16,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     private renderGhostCallback: () => React.ReactNode = null;
     private lastScrollTime = new Date().getTime();
 
-    constructor() {
-        super();
+    componentDidMount () {
         window.addEventListener('pointermove', this.windowPointerMoveHandler);
         window.addEventListener('pointerup', this.windowPointerUpHandler);
     }

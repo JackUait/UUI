@@ -115,6 +115,7 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
 
     updateRowHeights() {
         const nodes = this.container3?.children;
+        if (!nodes) return;
         const topIndex = this.props.value?.topIndex || 0;
         for (let n = 0; n < nodes.length; n++) {
             this.rowHeights[topIndex + n] = nodes[n].getBoundingClientRect().height;

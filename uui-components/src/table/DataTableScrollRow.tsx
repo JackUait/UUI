@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import ScrollBars from 'react-custom-scrollbars-2';
-import { ScrollManager, DataColumnProps, IHasCX, cx, IHasRawProps } from '@epam/uui';
+import { ScrollManager, DataColumnProps, IHasCX, cx, IHasRawProps, isClientSide } from '@epam/uui';
 import { FlexCell } from '../layout/flexItems/FlexCell';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import * as css from './DataTableScrollRow.scss';
@@ -25,7 +25,7 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
 
     private clientWidth?: number;
 
-    resizeObserver = new ResizeObserver(entries => {
+    resizeObserver = isClientSide && new ResizeObserver(entries => {
         for (let entry of entries) {
             const contentRect = entry.contentRect;
 

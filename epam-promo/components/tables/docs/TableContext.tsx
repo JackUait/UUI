@@ -37,11 +37,15 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
     };
 
     lens = Lens.onState<DataTableCardState>(this);
-    scrollManager = new ScrollManager();
+    scrollManager: ScrollManager;
     static contextType = UuiContext;
     context: UuiContexts;
 
     public static displayName = "Table";
+
+    componentDidMount() {
+        this.scrollManager = new ScrollManager();
+    }
 
     getVisibleColumns() {
         return this.props.props.columns.filter((i: DataColumnProps<any>) => this.state.columnsConfig[i.key] ? this.state.columnsConfig[i.key].isVisible : true);
